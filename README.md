@@ -24,6 +24,14 @@ make
 
 Then, human-played version and AI version will be compiled.
 
+# Development
+
+[2048](https://github.com/qyxtim/AI-For-Games/tree/main/2048)
+
+[Tic-tac-toe](https://github.com/qyxtim/AI-For-Games/tree/main/tic-tac-toe)
+
+[Demining](https://github.com/qyxtim/AI-For-Games/tree/main/demining)
+
 # Contribute
 You are welcome to contribute to this repository. You can contribute to it via two ways:
 
