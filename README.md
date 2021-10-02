@@ -46,7 +46,7 @@ You are welcome to contribute to this repository. You can contribute to it via t
 
 - [ ] Flappy Bird
 
-- [ ] Tetrix
+- [ ] Tetris
 
 # License
 [GNU General Public License version 3](https://opensource.org/licenses/GPL-3.0)
