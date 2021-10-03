@@ -40,7 +40,7 @@ You are welcome to contribute to this repository. You can contribute to it in tw
 
 # New Games in the Future
 
-- [ ] Sudoku
+- [x] Sudoku
 
 - [ ] Nim
 
