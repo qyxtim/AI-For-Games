@@ -83,17 +83,17 @@ void Board::output() const
     }
 }
 
-void Board::tag(GridLocation location)
+void Board::tag(const GridLocation& location)
 {
     taggedLocations.insert(location);
 }
 
-void Board::reset(GridLocation location)
+void Board::reset(const GridLocation& location)
 {
     taggedLocations.erase(location);
 }
 
-void Board::click(GridLocation location)
+void Board::click(const GridLocation& location)
 {
     if (taggedLocations.find(location) != taggedLocations.end())
         return;
@@ -118,7 +118,7 @@ bool Board::isEnd() const
     return int(size * size * factor) + clickedLocations.size() == size * size;
 }
 
-int Board::getMines(GridLocation location) const
+int Board::getMines(const GridLocation& location) const
 {
     return grid[location.x][location.y];
 }

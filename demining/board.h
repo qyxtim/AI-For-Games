@@ -33,19 +33,19 @@ public:
     void finaloutput() const;
 
     // insert location into taggedLocation, avoid futher clicking
-    void tag(GridLocation location);
+    void tag(const GridLocation& location);
 
     // reset tagged location to normal status
-    void reset(GridLocation location);
+    void reset(const GridLocation& location);
 
     // click certain place. if it is mine, it will insert that location to taggedLocation and clickedLocation
-    void click(GridLocation location);
+    void click(const GridLocation& location);
 
     // Check whether the game ends
     bool isEnd() const;
 
     // Get the number of corresponding location
-    int getMines(GridLocation) const;
+    int getMines(const GridLocation& location) const;
 
     // return the intersection of taggedLocation and clickedLocation
     std::set<GridLocation> intersections() const;

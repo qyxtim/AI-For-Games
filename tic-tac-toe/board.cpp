@@ -31,7 +31,7 @@ void Board::output() const
     }
 }
 
-bool Board::move(GridLocation location)
+bool Board::move(const GridLocation& location)
 {
     if (availableActions.find(location) == availableActions.end())
         return false;

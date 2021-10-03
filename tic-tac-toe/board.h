@@ -30,7 +30,7 @@ public:
     void output() const;
 
     // If not successfully moved, return false.
-    bool move(GridLocation location);
+    bool move(const GridLocation& location);
 
     // Check if the game is over.
     bool isEnd() const;
