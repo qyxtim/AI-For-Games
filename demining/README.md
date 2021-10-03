@@ -1,5 +1,7 @@
 # Understanding Demining Code
 
+## Implementation of Demining
+
 Implementation of Demining is split into four files:
 
 - `human.cpp` provides the human-played version of Demining (UI)

@@ -1,4 +1,7 @@
 # Understanding 2048 Code
+
+## Implementation of 2048
+
 Implementation of 2048 is split into four files:
 
 - `2048.cpp` provides the human-played version of 2048 (UI)

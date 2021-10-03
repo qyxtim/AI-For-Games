@@ -1,5 +1,7 @@
 # Understanding tic-tac-toe Code
 
+## Implementation of  tic-tac-toe
+
 Implementation of  tic-tac-toe is split into four files:
 
 - ` human.cpp` provides the human-played version of  tic-tac-toe (UI)
