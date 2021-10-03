@@ -16,7 +16,7 @@ int main(void)
     if (ai.solve())
         printf("You Solve it!\n");
     else
-        printf("You lose!\n");
+        printf("This sudoku has no solution!\n");
     ai.b.output();
 
     return 0;

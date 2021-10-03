@@ -15,11 +15,10 @@ inline bool operator<(const GridLocation &lhs, const GridLocation &rhs)
 class Board
 {
 public:
-    int **grid;
+    int grid[9][9];
 
 public:
     Board();
-    ~Board();
 
     // Overload operator () to allow grammar (i, j) to access grid[i][j]
     int &operator()(int x, int y);
