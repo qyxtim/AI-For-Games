@@ -44,14 +44,9 @@ void Grid::generateAPlace()
 		return;
 
 	auto iter = gl.begin();
-	while (index > 0)
-	{
-		iter++;
-		index--;
-	}
+	std::advance(iter, index);
 
 	grid[iter->x][iter->y] = rand() % 2 == 0 ? 2 : 4;
-	;
 	deleteGridLocation(iter->x, iter->y);
 }
 

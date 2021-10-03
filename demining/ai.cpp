@@ -21,10 +21,9 @@ void AI::makeRandomMove()
 
     int randIndex = rand() % relativelySate.size();
 
-    GridLocation g;
-    for (auto iter = relativelySate.begin(); iter != relativelySate.end(); iter++, randIndex--)
-        if (randIndex == 0)
-            g = *iter;
+    auto iter = relativelySate.begin();
+    std::advance(iter, randIndex);
+    GridLocation g = *iter;
 
     availableActions.erase(g);
     b.click(g);
