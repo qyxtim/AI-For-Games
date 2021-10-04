@@ -32,6 +32,8 @@ Then, the human-played version and AI version will be compiled.
 
 [Demining](https://github.com/qyxtim/AI-For-Games/tree/main/demining)
 
+[Sudoku](https://github.com/qyxtim/AI-For-Games/tree/main/sudoku)
+
 # Contribute
 You are welcome to contribute to this repository. You can contribute to it in two ways:
 
