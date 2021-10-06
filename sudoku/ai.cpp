@@ -95,7 +95,7 @@ bool AI::solveHelper(int offset)
 
 bool AI::solve()
 {
-    // Do a precheck to ensure that before searching, the sudoku is now valid
+    // Do a precheck to ensure that before searching, the sudoku is valid
     for(int i = 0; i < 9; i++)
         for(int j = 0; j < 9; j++)
             if(b(i, j) != 0 && isEnded({i, j}))

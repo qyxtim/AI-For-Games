@@ -7,7 +7,7 @@
 
 This repository contains several games written by C++ and implementation of their AI.
 
-2048, Tic-Tac-Toe, Demining...More games are coming!
+2048, Tic-Tac-Toe, Demining, Sudoku, Nim... More games are coming!
 
 # Get Started
 To use this project, first clone the repo on your device using the command below:
@@ -22,7 +22,7 @@ Then, `cd` into the directory you want to access and use the command below:
 make
 ```
 
-Then, the human-played version and AI version will be compiled.
+Then, a human-played version and an AI version will be compiled.
 
 # Development
 
