@@ -27,7 +27,7 @@ struct Pair{
 };
 
 struct Knowledge{
-	std::vector<int> piles;
+  std::vector<int> piles;
   Pair nextAction;
 };
 ```
