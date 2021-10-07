@@ -34,6 +34,8 @@ Then, a human-played version and an AI version will be compiled.
 
 [Sudoku](https://github.com/qyxtim/AI-For-Games/tree/main/sudoku)
 
+[Nim](https://github.com/qyxtim/AI-For-Games/tree/main/nim)
+
 # Contribute
 You are welcome to contribute to this repository. You can contribute to it in two ways:
 
@@ -44,7 +46,7 @@ You are welcome to contribute to this repository. You can contribute to it in tw
 
 - [x] Sudoku
 
-- [ ] Nim
+- [x] Nim
 
 - [ ] Flappy Bird
 
