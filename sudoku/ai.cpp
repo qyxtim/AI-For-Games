@@ -123,9 +123,7 @@ void AI::buildHelper(int level, std::set<int> &availableOffset)
     {
         b(iter->location.x, iter->location.y) = *it;
         if (!isEnded(iter->location))
-        {
             return buildHelper(level + 1, availableOffset);
-        }
         b(iter->location.x, iter->location.y) = 0;
     }
 

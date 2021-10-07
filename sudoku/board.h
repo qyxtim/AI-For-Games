@@ -14,7 +14,7 @@ inline bool operator<(const GridLocation &lhs, const GridLocation &rhs)
 
 class Board
 {
-public:
+private:
     int grid[9][9];
 
 public:

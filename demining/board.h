@@ -16,7 +16,12 @@ inline bool operator<(const GridLocation &lhs, const GridLocation &rhs)
 
 class Board
 {
-public:
+private:
+    // number represents the number of mines near them. -1 means the location is a mine
+    int **grid;
+    std::set<GridLocation> taggedLocations;
+    std::set<GridLocation> clickedLocations;
+
     // size of the grid
     int size;
     // ratio of mines in the grid
@@ -50,9 +55,5 @@ public:
     // return the intersection of taggedLocation and clickedLocation
     std::set<GridLocation> intersections() const;
 
-private:
-    // number represents the number of mines near them. -1 means the location is a mine
-    int **grid;
-    std::set<GridLocation> taggedLocations;
-    std::set<GridLocation> clickedLocations;
+    friend class AI;
 };

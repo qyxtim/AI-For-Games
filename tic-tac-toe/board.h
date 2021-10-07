@@ -16,7 +16,7 @@ inline bool operator<(const GridLocation &lhs, const GridLocation &rhs)
 
 class Board
 {
-public:
+private:
     int board[3][3] = {{-1, -1, -1}, {-1, -1, -1}, {-1, -1, -1}};
     std::set<GridLocation> availableActions;
     int currentPlay = 1; // Record who is currently playing
@@ -37,6 +37,8 @@ public:
 
     // 0 for tie, 1 for user, -1 for AI (an utility function for AI)
     int winner() const;
+
+    friend class AI;
 
 private:
     // Get which symbol wins

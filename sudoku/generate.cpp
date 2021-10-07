@@ -14,20 +14,14 @@ int main(void)
     do
     {
         for (int i = 0; i < 9; i++)
-        {
             for (int j = 0; j < 9; j++)
-            {
                 ai.b(i, j) = 0;
-            }
-        }
+
         ai.build();
+
         for (int i = 0; i < 9; i++)
-        {
             for (int j = 0; j < 9; j++)
-            {
                 b(i, j) = ai.b(i, j);
-            }
-        }
     } while (!ai.solve());
 
     b.output();
