@@ -22,8 +22,8 @@ struct GridLocation{
 };
 
 struct Knowledge{
-	set<GridLocation> locations;
-	int numberOfMines;
+  set<GridLocation> locations;
+  int numberOfMines;
 };
 ```
 

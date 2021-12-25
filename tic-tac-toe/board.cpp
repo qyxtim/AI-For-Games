@@ -20,11 +20,11 @@ void Board::output() const
     {
         for (int j = 0; j < 3; j++)
         {
-            if (board[i][j] == -1)
+            if (board[i][j] == Empty)
                 printf("  ");
-            else if (board[i][j] == 0)
+            else if (board[i][j] == O)
                 printf("o ");
-            else if (board[i][j] == 1)
+            else if (board[i][j] == X)
                 printf("x ");
         }
         printf("\n");
@@ -38,7 +38,7 @@ bool Board::move(const GridLocation& location)
     availableActions.erase(location);
     board[location.x][location.y] = currentPlay;
 
-    currentPlay = !currentPlay;
+    currentPlay = currentPlay == X ? O : X;
     return true;
 }
 
@@ -50,7 +50,7 @@ bool Board::isEnd() const
     // Check Row
     for (int i = 0; i < 3; i++)
     {
-        if (board[i][0] == -1)
+        if (board[i][0] == Empty)
             continue;
         bool same = true;
         for (int j = 1; j < 3; j++)
@@ -65,7 +65,7 @@ bool Board::isEnd() const
     // Check Col
     for (int i = 0; i < 3; i++)
     {
-        if (board[0][i] == -1)
+        if (board[0][i] == Empty)
             continue;
         bool same = true;
         for (int j = 1; j < 3; j++)
@@ -78,20 +78,20 @@ bool Board::isEnd() const
     }
 
     // Check diagonal
-    if (board[0][0] != -1 && board[0][0] == board[1][1] && board[1][1] == board[2][2])
+    if (board[0][0] != Empty && board[0][0] == board[1][1] && board[1][1] == board[2][2])
         return true;
-    if (board[0][2] != -1 && board[0][2] == board[1][1] && board[2][0] == board[1][1])
+    if (board[0][2] != Empty && board[0][2] == board[1][1] && board[2][0] == board[1][1])
         return true;
 
     return false;
 }
 
-int Board::winnerHelper() const
+Choice Board::winnerHelper() const
 {
     // Check Row
     for (int i = 0; i < 3; i++)
     {
-        if (board[i][0] == -1)
+        if (board[i][0] == Empty)
             continue;
         bool same = true;
         for (int j = 1; j < 3; j++)
@@ -106,7 +106,7 @@ int Board::winnerHelper() const
     // Check Col
     for (int i = 0; i < 3; i++)
     {
-        if (board[0][i] == -1)
+        if (board[0][i] == Empty)
             continue;
         bool same = true;
         for (int j = 1; j < 3; j++)
@@ -119,18 +119,18 @@ int Board::winnerHelper() const
     }
 
     // Check diagonal
-    if (board[0][0] != -1 && board[0][0] == board[1][1] && board[1][1] == board[2][2])
+    if (board[0][0] != Empty && board[0][0] == board[1][1] && board[1][1] == board[2][2])
         return board[1][1];
-    if (board[0][2] != -1 && board[0][2] == board[1][1] && board[2][0] == board[1][1])
+    if (board[0][2] != Empty && board[0][2] == board[1][1] && board[2][0] == board[1][1])
         return board[1][1];
 
-    return 2;
+    return Empty;
 }
 
 int Board::winner() const
 {
     int win = winnerHelper();
-    if (win == 0)
+    if (win == O)
     {
         // If o is the winning symbol and you choose to be first player, you lose
         if (whoFirst == '0')
@@ -138,7 +138,7 @@ int Board::winner() const
         else
             return 1;
     }
-    else if (win == 1)
+    else if (win == X)
     {
         // If x is the winning symbol and you choose to be first player, you won
         if (whoFirst == '0')

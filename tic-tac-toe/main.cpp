@@ -13,8 +13,10 @@ int main(void)
     printf("%s\n", s);
 
     char c;
-    scanf("%c", &c);
-    ;
+    do
+    {
+        scanf("%c", &c);
+    } while (c != '0' && c != '1');
 
     AI ai(c);
 
@@ -26,7 +28,6 @@ int main(void)
         if (isAINow)
         {
             ai.move();
-            ai.b.output();
         }
         else
         {
@@ -36,6 +37,7 @@ int main(void)
                 scanf("%d %d", &x, &y);
             } while (!ai.b.move({x, y}));
         }
+        ai.b.output();
         isAINow = !isAINow;
     }
 
