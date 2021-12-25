@@ -22,8 +22,8 @@ std::set<GridLocation> AI::locationsNearBlock(const GridLocation &g) const
     return s;
 }
 
-AI::AI() : knowledges({}), b()
-{
+void AI::updateKnowledge(){
+    knowledges = {};
     for (int i = 0; i < 9; i++)
     {
         for (int j = 0; j < 9; j++)
@@ -101,6 +101,9 @@ bool AI::solve()
             if(b(i, j) != 0 && isEnded({i, j}))
                 return false;
 
+    // Before solving, we need to rebuild the knowledge.
+    updateKnowledge();
+
     return solveHelper(0);
 }
 
@@ -132,6 +135,7 @@ void AI::buildHelper(int level, std::set<int> &availableOffset)
 
 void AI::build()
 {
+    updateKnowledge();
     std::set<int> availableOffset;
     for (int i = 0; i < knowledges.size(); i++)
         availableOffset.insert(i);

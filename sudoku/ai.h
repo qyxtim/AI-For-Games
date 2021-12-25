@@ -33,16 +33,18 @@ private:
     // Helper function to help build sudoku
     void buildHelper(int, std::set<int> &availableOffset);
 
+    void updateKnowledge();
+
 public:
     Board b;
 
 public:
-    AI();
-
     // This function solves the sudoku by using backtracking.
     // It returns False if the sudoku has no solution.
     bool solve();
 
     // This function is used to build sudoku
     void build();
+
+    friend class Controller;
 };

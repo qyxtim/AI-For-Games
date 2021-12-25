@@ -26,4 +26,6 @@ public:
 
     // Output function of the grid
     void output() const;
+
+    friend class Controller;
 };

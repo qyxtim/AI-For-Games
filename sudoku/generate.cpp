@@ -2,8 +2,6 @@
 #include <random>
 #include <set>
 
-#define maxSize 30
-
 int main(void)
 {
     srand(unsigned(time(NULL)));
