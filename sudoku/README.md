@@ -10,6 +10,10 @@ Implementation of Sudoku is split into four files:
   - `grid` that stores the value of blocks
   - `output`, used to output the grid
 - `ai.cpp` provides an implementation of Sudoku AI.
+- `controller.cpp` is an controller and viewer for the Sudoku
+  - It's responsible for interacting with the board and AI agent.
+  - It's also responsible for rendering the UI
+  - Because this is not a big game, the viewer and controller are not separated.
 
 For AI, Sudoku AI uses brute force search, which means in some extreme cases, it may take a long time to solve sudoku.
 
@@ -21,3 +25,7 @@ For AI, Sudoku AI uses brute force search, which means in some extreme cases, it
 - Then, it uses AI to check if the sudoku is solvable
   - if the sudoku is solvable, it will output the sudoku
   - if the sudoku is not solvable, go back to step one
+
+## Potential Problems
+
+Because the AI uses backtracking to generate and solve Sudoku, when it encounters some difficult Sudoku problems, it will take a long time to solve them. This means that it may cause the program to be "No Response".
