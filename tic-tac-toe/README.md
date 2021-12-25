@@ -12,6 +12,9 @@ Implementation of  tic-tac-toe is split into four files:
   - `isEnd` method, indicating whether it is the end of the game
   - `winner` method, serving for telling who is the winner and used by AI.
   - `output`, used to output the grid
+- `ui.cpp` provides an opencv implementation of the user interface of tic-tac-toe
+  - It only includes the AI version of tic-tac-toe.
+  - To compile the user interface, you must have the opencv library installed.
 - `ai.cpp` provides an implementation of tic-tac-toe AI.
 
-For AI,  tic-tac-toe AI uses Minimax, for more information you can [click here](https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-1-introduction/).
+For AI, tic-tac-toe AI uses Minimax, for more information you can [click here](https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-1-introduction/).
