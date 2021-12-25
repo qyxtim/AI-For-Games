@@ -15,8 +15,6 @@ Implementation of Sudoku is split into four files:
   - It's also responsible for rendering the UI
   - Because this is not a big game, the viewer and controller are not separated.
 
-For AI, Sudoku AI uses brute force search, which means in some extreme cases, it may take a long time to solve sudoku.
-
 ## How to generate Sudoku
 
 `generate.cpp` uses a clever way to generate sudoku. It takes the following step:

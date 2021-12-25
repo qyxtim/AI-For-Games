@@ -52,7 +52,7 @@ You are welcome to contribute to this repository. You can contribute to it in tw
 # UI for the Games in the Future
 - [x] Tic-Tac-Toe
 - [ ] 2048
-- [ ] Sudoku
+- [x] Sudoku
 - [ ] Demining
 - [ ] Flappy Bird
 - [ ] Tetris
