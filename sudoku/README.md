@@ -27,3 +27,9 @@ Implementation of Sudoku is split into four files:
 ## Potential Problems
 
 Because the AI uses backtracking to generate and solve Sudoku, when it encounters some difficult Sudoku problems, it will take a long time to solve them. This means that it may cause the program to be "No Response".
+
+## UI
+
+![Sudoku-1](./assets/s1.png)
+
+![Sudoku-2](./assets/s2.png)

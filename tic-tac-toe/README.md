@@ -1,6 +1,6 @@
 # Understanding tic-tac-toe Code
 
-## Implementation of  tic-tac-toe
+## Implementation of tic-tac-toe
 
 Implementation of  tic-tac-toe is split into four files:
 
@@ -18,3 +18,9 @@ Implementation of  tic-tac-toe is split into four files:
 - `ai.cpp` provides an implementation of tic-tac-toe AI.
 
 For AI, tic-tac-toe AI uses Minimax, for more information you can [click here](https://www.geeksforgeeks.org/minimax-algorithm-in-game-theory-set-1-introduction/).
+
+## UI
+
+![tic-tac-toe-1](./assets/t1.png)
+
+![tic-tac-toe-1](./assets/t2.png)
