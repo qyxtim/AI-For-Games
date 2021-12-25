@@ -21,6 +21,6 @@ For AI, tic-tac-toe AI uses Minimax, for more information you can [click here](h
 
 ## UI
 
-![tic-tac-toe-1](./assets/t1.png)
+<img src="https://raw.githubusercontent.com/qyxtim/AI-For-Games/main/tic-tac-toe/assets/t1.png" width=50% height=50%>
 
-![tic-tac-toe-1](./assets/t2.png)
+<img src="https://raw.githubusercontent.com/qyxtim/AI-For-Games/main/tic-tac-toe/assets/t2.png" width=50% height=50%>

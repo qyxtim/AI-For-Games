@@ -30,6 +30,6 @@ Because the AI uses backtracking to generate and solve Sudoku, when it encounter
 
 ## UI
 
-![Sudoku-1](./assets/s1.png)
+<img src="https://raw.githubusercontent.com/qyxtim/AI-For-Games/main/sudoku/assets/s1.png" width=50% height=50%>
 
-![Sudoku-2](./assets/s2.png)
+<img src="https://raw.githubusercontent.com/qyxtim/AI-For-Games/main/sudoku/assets/s2.png" width=50% height=50%>
