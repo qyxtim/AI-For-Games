@@ -45,11 +45,16 @@ You are welcome to contribute to this repository. You can contribute to it in tw
 # New Games in the Future
 
 - [x] Sudoku
-
 - [x] Nim
-
 - [ ] Flappy Bird
+- [ ] Tetris
 
+# UI for the Games in the Future
+- [x] Tic-Tac-Toe
+- [ ] 2048
+- [ ] Sudoku
+- [ ] Demining
+- [ ] Flappy Bird
 - [ ] Tetris
 
 # License
