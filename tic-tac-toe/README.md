@@ -24,3 +24,18 @@ For AI, tic-tac-toe AI uses Minimax, for more information you can [click here](h
 <img src="https://raw.githubusercontent.com/qyxtim/AI-For-Games/main/tic-tac-toe/assets/t1.png" width=50% height=50%>
 
 <img src="https://raw.githubusercontent.com/qyxtim/AI-For-Games/main/tic-tac-toe/assets/t2.png" width=50% height=50%>
+
+To compile the UI, you can use the following `cmake` configuration:
+
+```cmake
+cmake_minimum_required(VERSION 3.7)
+project(Sudoku)
+
+set(CMAKE_CXX_STANDARD 17)
+
+find_package(OpenCV REQUIRED)
+set(SOURCE_FILES ui.cpp ai.cpp board.cpp)
+add_executable(ui ${SOURCE_FILES})
+
+target_link_libraries(ui ${OpenCV_LIBS})
+```

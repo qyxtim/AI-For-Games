@@ -33,3 +33,18 @@ Because the AI uses backtracking to generate and solve Sudoku, when it encounter
 <img src="https://raw.githubusercontent.com/qyxtim/AI-For-Games/main/sudoku/assets/s1.png" width=50% height=50%>
 
 <img src="https://raw.githubusercontent.com/qyxtim/AI-For-Games/main/sudoku/assets/s2.png" width=50% height=50%>
+
+To compile the UI, you can use the following `cmake` configuration:
+
+```cmake
+cmake_minimum_required(VERSION 3.7)
+project(Sudoku)
+
+set(CMAKE_CXX_STANDARD 17)
+
+find_package(OpenCV REQUIRED)
+set(SOURCE_FILES ui.cpp controller.cpp ai.cpp board.cpp)
+add_executable(ui ${SOURCE_FILES})
+
+target_link_libraries(ui ${OpenCV_LIBS})
+```

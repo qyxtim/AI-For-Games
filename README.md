@@ -51,7 +51,7 @@ You are welcome to contribute to this repository. You can contribute to it in tw
 
 # UI for the Games
 
-The UI will be created for all games in the repository. These UI will be created based on `opencv`. Thus, if you need to use the UI version, you will need to install `opencv` and use the correct commands to compile it. (For the UI version, the repository does not provide a compile command).
+The UI will be created for all games in the repository. These UI will be created based on `opencv`. Thus, if you need to use the UI version, you will need to install `opencv`. The `cmake` configuration is provided in the `README.md` for each game.
 
 - [x] Tic-Tac-Toe
 - [ ] 2048
