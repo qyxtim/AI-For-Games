@@ -16,7 +16,6 @@ Implementation of 2048 is split into four files:
   - It allows two modes: manual or AI.
   - To activate manual mode, you can use: `./ui`.
   - To start AI mode, you need to add the `-a` flag: `./ui -a`. In this mode, you have no control and can only see how the AI moves.
-  - TODO: The background color of the tiles will be added in the next version.
 
 For AI, 2048 AI uses Monte Carlo Tree Search, for more information you can [click here](https://www.geeksforgeeks.org/ml-monte-carlo-tree-search-mcts/).
 
