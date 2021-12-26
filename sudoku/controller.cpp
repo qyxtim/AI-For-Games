@@ -1,11 +1,14 @@
 #include "controller.h"
 
+#define BLACK Vec3b(0,0,0)
+#define RED Vec3b(0,0,255)
+
 bool isDigit(const char c)
 {
     return (c >= '1' && c <= '9');
 }
 
-void Controller::fillSquare(int x, int y, int length)
+void Controller::fillSquare(int x, int y, int length, Vec3b color)
 {
     for (int r = y; r < y+length; ++r)
     {
@@ -13,9 +16,9 @@ void Controller::fillSquare(int x, int y, int length)
         const Pixel *ptr_end = ptr + length;
         for (; ptr != ptr_end; ++ptr)
         {
-            ptr->x = 0;
-            ptr->y = 0;
-            ptr->z = 0;
+            ptr->x = color[0];
+            ptr->y = color[1];
+            ptr->z = color[2];
         }
     }
 }
@@ -57,9 +60,13 @@ void Controller::init()
         }
     }
 
-    // Render Solve Button
+    // Render Check Button
     rectangle(img, Point(SIDE + (OFFSET / 2) - 80, 250), Point(SIDE + (OFFSET / 2) + 80, 300), Scalar(255, 255, 255), 3);
-    putText(img, "Solve", Point(SIDE + (OFFSET / 2) - 20, 280), FONT_HERSHEY_COMPLEX, 0.5, Scalar(255, 255, 255));
+    putText(img, "Check", Point(SIDE + (OFFSET / 2) - 20, 280), FONT_HERSHEY_COMPLEX, 0.5, Scalar(255, 255, 255));
+
+    // Render Solve Button
+    rectangle(img, Point(SIDE + (OFFSET / 2) - 80, 350), Point(SIDE + (OFFSET / 2) + 80, 400), Scalar(255, 255, 255), 3);
+    putText(img, "Solve", Point(SIDE + (OFFSET / 2) - 20, 380), FONT_HERSHEY_COMPLEX, 0.5, Scalar(255, 255, 255));
 
     // Render Current Number
     renderCurrentNumber();
@@ -70,23 +77,23 @@ void Controller::renderCurrentNumber(){
     if (currentNumberForDrawing != curNum)
     {
         // Refill the square of the current number
-        fillSquare(SIDE + (OFFSET / 2) - 10, 60, 20);
+        fillSquare(SIDE + (OFFSET / 2) - 10, 60, 20, Vec3b(0, 0, 0));
         char n[2] = {char(curNum + '0')};
         putText(img, String(n), Point(SIDE + (OFFSET / 2) - 7, 75), FONT_HERSHEY_COMPLEX, 0.5, Scalar(255, 255, 255));
         currentNumberForDrawing = curNum;
     }
 }
 
-void Controller::render(int x, int y)
+void Controller::render(int x, int y, Vec3b color)
 {
     // Refill the square of the grid
-    fillSquare(x * SQUARE_SIZE + 5, y * SQUARE_SIZE + 5, SQUARE_SIZE - 10);
+    fillSquare(x * SQUARE_SIZE + 5, y * SQUARE_SIZE + 5, SQUARE_SIZE - 10, color);
     char n[2] = {char(ai.b.grid[x][y] + '0')};
     putText(img, String(n), Point(x * SQUARE_SIZE + (SQUARE_SIZE / 2) - 7, y * SQUARE_SIZE + (SQUARE_SIZE / 2) + 7), FONT_HERSHEY_COMPLEX, 0.5, Scalar(255, 255, 255));
 }
 
 void Controller::solve(){
-    fillSquare(SIDE + (OFFSET / 2) - 50, 350, 100);
+    fillSquare(SIDE + (OFFSET / 2) - 50, 410, 100, Vec3b(0, 0, 0));
 
     Board backup;
     for (int i = 0; i < 9; i++)
@@ -100,17 +107,35 @@ void Controller::solve(){
             for (int j = 0; j < 9; j++)
                 ai.b(i, j) = backup(i, j);
         // Render Unsolvable
-        putText(img, "Unsolvable", Point(SIDE + (OFFSET / 2) - 50, 400), FONT_HERSHEY_COMPLEX, 0.5, Scalar(255, 255, 255));
+        putText(img, "Unsolvable", Point(SIDE + (OFFSET / 2) - 50, 450), FONT_HERSHEY_COMPLEX, 0.5, Scalar(255, 255, 255));
     }else{
         for (int i = 0; i < 9; i++)
             for (int j = 0; j < 9; j++)
-                render(i, j);
+                render(i, j, BLACK);
         freeze = true;
     }
 }
 
-bool clickSolve(int x, int y){
+GridLocation Controller::check(){
+    for(int i = 0; i < 9; i++){
+        for(int j = 0; j < 9; j++){
+            if(original(i, j) == 0 && ai.b(i, j) != 0){
+                if(ai.isEnded({i, j})){
+                    return {i, j};
+                }
+            }
+        }
+    }
+
+    return {-1, -1};
+}
+
+bool clickCheck(int x, int y){
     return x >= SIDE + (OFFSET / 2) - 80 && x <= SIDE + (OFFSET / 2) + 80 && y >= 250 && y <= 300;
+}
+
+bool clickSolve(int x, int y){
+    return x >= SIDE + (OFFSET / 2) - 80 && x <= SIDE + (OFFSET / 2) + 80 && y >= 350 && y <= 400;
 }
 
 void onClick(int evt, int x, int y, int flags, void *param){
@@ -119,6 +144,12 @@ void onClick(int evt, int x, int y, int flags, void *param){
         if(x > SIDE || y > SIDE){
             if(clickSolve(x, y))
                 cptr->solve();
+            if(clickCheck(x, y)){
+                GridLocation g = cptr->check();
+                if(g.x != -1 && g.y != -1){
+                    cptr->render(g.x, g.y, RED);
+                }
+            }
             return;
         }
 
@@ -126,7 +157,7 @@ void onClick(int evt, int x, int y, int flags, void *param){
         y = y / SQUARE_SIZE;
         if(cptr->original(x, y) == 0){
             cptr->ai.b(x, y) = cptr->curNum;
-            cptr->render(x, y);
+            cptr->render(x, y,BLACK);
         }
     }
 }
@@ -144,7 +175,7 @@ void Controller::show()
     while (1)
     {
         imshow("sudoku", img);
-        if(isDigit((c = (waitKey(20) & 0xFF)))){
+        if(isDigit((c = (waitKey(20) & 0xFF))) && !freeze){
             curNum = c - '0';
             renderCurrentNumber();
         }

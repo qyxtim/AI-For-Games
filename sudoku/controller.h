@@ -21,12 +21,13 @@ private:
 
 private:
     // Render UI
-    void fillSquare(int, int, int);
+    void fillSquare(int, int, int, Vec3b);
     void init();
-    void render(int,int);
+    void render(int,int,Vec3b);
     void renderCurrentNumber();
     void generate();
     void solve();
+    GridLocation check();
 
 public:
     void show();
