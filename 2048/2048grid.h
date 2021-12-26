@@ -42,10 +42,13 @@ public:
 	// This function is used to output the grid.
 	void structure() const;
 
+	// This function is used to determine the score of the grid
 	double score() const;
 
 	// A helper function to generate a place to insert the number 2/4
 	void generateAPlace();
+
+	friend void render();
 
 private:
 	// 2D array that stores the grid

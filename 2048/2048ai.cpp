@@ -11,8 +11,8 @@ int main(void)
     ai.g.structure();
     while (ai.makeMove())
     {
-        // For user control
-        // getchar();
+        ai.g.generateAPlace();
+        ai.g.structure();
     }
 
     return 0;

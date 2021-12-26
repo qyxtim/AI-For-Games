@@ -75,8 +75,6 @@ bool AI::makeMove()
         g.right();
         break;
     }
-    g.generateAPlace();
-    g.structure();
 
     return true;
 }
