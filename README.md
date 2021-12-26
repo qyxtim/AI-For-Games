@@ -54,7 +54,7 @@ You are welcome to contribute to this repository. You can contribute to it in tw
 The UI will be created for all games in the repository. These UI will be created based on `opencv`. Thus, if you need to use the UI version, you will need to install `opencv`. The `cmake` configuration is provided in the `README.md` for each game.
 
 - [x] Tic-Tac-Toe
-- [ ] 2048
+- [x] 2048
 - [x] Sudoku
 - [ ] Demining
 - [ ] Flappy Bird
