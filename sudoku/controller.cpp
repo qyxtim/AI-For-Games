@@ -1,7 +1,7 @@
 #include "controller.h"
 
-#define BLACK Vec3b(0,0,0)
-#define RED Vec3b(0,0,255)
+#define BLACK Vec3b(0, 0, 0)
+#define RED Vec3b(0, 0, 255)
 
 bool isDigit(const char c)
 {
@@ -10,7 +10,7 @@ bool isDigit(const char c)
 
 void Controller::fillSquare(int x, int y, int length, Vec3b color)
 {
-    for (int r = y; r < y+length; ++r)
+    for (int r = y; r < y + length; ++r)
     {
         Pixel *ptr = img.ptr<Pixel>(r, x);
         const Pixel *ptr_end = ptr + length;
@@ -23,7 +23,8 @@ void Controller::fillSquare(int x, int y, int length, Vec3b color)
     }
 }
 
-void Controller::generate(){
+void Controller::generate()
+{
     do
     {
         for (int i = 0; i < 9; i++)
@@ -40,20 +41,28 @@ void Controller::generate(){
             ai.b(i, j) = original(i, j);
 }
 
-void Controller::init()
+void Controller::background()
 {
     for (int i = 0; i < 10; i++)
     {
         line(img, Point(i * SQUARE_SIZE, 0), Point(i * SQUARE_SIZE, SIDE), Scalar(255, 255, 255), 3);
         line(img, Point(0, i * SQUARE_SIZE), Point(SIDE, i * SQUARE_SIZE), Scalar(255, 255, 255), 3);
     }
+}
+
+void Controller::init()
+{
+    background();
 
     putText(img, "Current Number", Point(SIDE + 30, 30), FONT_HERSHEY_COMPLEX, 0.5, Scalar(255, 255, 255));
     rectangle(img, Point(SIDE + (OFFSET / 2) - 20, 50), Point(SIDE + (OFFSET / 2) + 20, 90), Scalar(255, 255, 255), 3);
 
-    for(int i = 0; i < 9; i++){
-        for(int j = 0; j < 9; j++){
-            if(ai.b.grid[i][j] != 0){
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
+            if (ai.b.grid[i][j] != 0)
+            {
                 char n[2] = {char(ai.b.grid[i][j] + '0'), '\0'};
                 putText(img, String(n), Point(i * SQUARE_SIZE + (SQUARE_SIZE / 2) - 7, j * SQUARE_SIZE + (SQUARE_SIZE / 2) + 7), FONT_HERSHEY_COMPLEX, 0.5, Scalar(255, 255, 255));
             }
@@ -72,7 +81,8 @@ void Controller::init()
     renderCurrentNumber();
 }
 
-void Controller::renderCurrentNumber(){
+void Controller::renderCurrentNumber()
+{
     static int currentNumberForDrawing = -1;
     if (currentNumberForDrawing != curNum)
     {
@@ -87,12 +97,15 @@ void Controller::renderCurrentNumber(){
 void Controller::render(int x, int y, Vec3b color)
 {
     // Refill the square of the grid
-    fillSquare(x * SQUARE_SIZE + 5, y * SQUARE_SIZE + 5, SQUARE_SIZE - 10, color);
+    fillSquare(x * SQUARE_SIZE, y * SQUARE_SIZE, SQUARE_SIZE, color);
     char n[2] = {char(ai.b.grid[x][y] + '0'), '\0'};
     putText(img, String(n), Point(x * SQUARE_SIZE + (SQUARE_SIZE / 2) - 7, y * SQUARE_SIZE + (SQUARE_SIZE / 2) + 7), FONT_HERSHEY_COMPLEX, 0.5, Scalar(255, 255, 255));
+
+    background();
 }
 
-void Controller::solve(){
+void Controller::solve()
+{
     fillSquare(SIDE + (OFFSET / 2) - 50, 410, 100, Vec3b(0, 0, 0));
 
     Board backup;
@@ -102,13 +115,16 @@ void Controller::solve(){
 
     bool b = ai.solve();
 
-    if(!b){
+    if (!b)
+    {
         for (int i = 0; i < 9; i++)
             for (int j = 0; j < 9; j++)
                 ai.b(i, j) = backup(i, j);
         // Render Unsolvable
         putText(img, "Unsolvable", Point(SIDE + (OFFSET / 2) - 50, 450), FONT_HERSHEY_COMPLEX, 0.5, Scalar(255, 255, 255));
-    }else{
+    }
+    else
+    {
         for (int i = 0; i < 9; i++)
             for (int j = 0; j < 9; j++)
                 render(i, j, BLACK);
@@ -116,11 +132,16 @@ void Controller::solve(){
     }
 }
 
-GridLocation Controller::check(){
-    for(int i = 0; i < 9; i++){
-        for(int j = 0; j < 9; j++){
-            if(original(i, j) == 0 && ai.b(i, j) != 0){
-                if(ai.isEnded({i, j})){
+GridLocation Controller::check()
+{
+    for (int i = 0; i < 9; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
+            if (original(i, j) == 0 && ai.b(i, j) != 0)
+            {
+                if (ai.isEnded({i, j}))
+                {
                     return {i, j};
                 }
             }
@@ -130,23 +151,30 @@ GridLocation Controller::check(){
     return {-1, -1};
 }
 
-bool clickCheck(int x, int y){
+bool clickCheck(int x, int y)
+{
     return x >= SIDE + (OFFSET / 2) - 80 && x <= SIDE + (OFFSET / 2) + 80 && y >= 250 && y <= 300;
 }
 
-bool clickSolve(int x, int y){
+bool clickSolve(int x, int y)
+{
     return x >= SIDE + (OFFSET / 2) - 80 && x <= SIDE + (OFFSET / 2) + 80 && y >= 350 && y <= 400;
 }
 
-void onClick(int evt, int x, int y, int flags, void *param){
-    Controller* cptr = (Controller*)param;
-    if(!cptr->freeze && evt == EVENT_LBUTTONDOWN){
-        if(x > SIDE || y > SIDE){
-            if(clickSolve(x, y))
+void onClick(int evt, int x, int y, int flags, void *param)
+{
+    Controller *cptr = (Controller *)param;
+    if (!cptr->freeze && evt == EVENT_LBUTTONDOWN)
+    {
+        if (x > SIDE || y > SIDE)
+        {
+            if (clickSolve(x, y))
                 cptr->solve();
-            if(clickCheck(x, y)){
+            if (clickCheck(x, y))
+            {
                 GridLocation g = cptr->check();
-                if(g.x != -1 && g.y != -1){
+                if (g.x != -1 && g.y != -1)
+                {
                     cptr->render(g.x, g.y, RED);
                 }
             }
@@ -155,9 +183,10 @@ void onClick(int evt, int x, int y, int flags, void *param){
 
         x = x / SQUARE_SIZE;
         y = y / SQUARE_SIZE;
-        if(cptr->original(x, y) == 0){
+        if (cptr->original(x, y) == 0)
+        {
             cptr->ai.b(x, y) = cptr->curNum;
-            cptr->render(x, y,BLACK);
+            cptr->render(x, y, BLACK);
         }
     }
 }
@@ -175,7 +204,8 @@ void Controller::show()
     while (1)
     {
         imshow("sudoku", img);
-        if(isDigit((c = (waitKey(20) & 0xFF))) && !freeze){
+        if (isDigit((c = (waitKey(20) & 0xFF))) && !freeze)
+        {
             curNum = c - '0';
             renderCurrentNumber();
         }

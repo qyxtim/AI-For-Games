@@ -27,6 +27,7 @@ private:
     void renderCurrentNumber();
     void generate();
     void solve();
+    void background();
     GridLocation check();
 
 public:
