@@ -8,18 +8,19 @@ using namespace cv;
 typedef cv::Point3_<uint8_t> Pixel;
 
 // Color Set
+#define CONTAINER Vec3b(160,173,187)
 #define BACKGROUND Vec3b(238, 228, 218)
-#define BLOCK_2048 Vec3b(237,194,46)
-#define BLOCK_1024 Vec3b(237,197,63)
-#define BLOCK_512 Vec3b(237,201,80)
-#define BLOCK_256 Vec3b(237,204,98)
-#define BLOCK_128 Vec3b(237,208,115)
-#define BLOCK_64 Vec3b(247,95,59)
-#define BLOCK_32 Vec3b(247,124,95)
-#define BLOCK_16 Vec3b(246,150,100)
-#define BLOCK_8 Vec3b(243,178,122)
-#define BLOCK_4 Vec3b(238,225,201)
-#define BLOCK_2 Vec3b(238,228,218)
+#define BLOCK_2048 Vec3b(237, 194, 46)
+#define BLOCK_1024 Vec3b(237, 197, 63)
+#define BLOCK_512 Vec3b(237, 201, 80)
+#define BLOCK_256 Vec3b(237, 204, 98)
+#define BLOCK_128 Vec3b(237, 208, 115)
+#define BLOCK_64 Vec3b(247, 95, 59)
+#define BLOCK_32 Vec3b(247, 124, 95)
+#define BLOCK_16 Vec3b(246, 150, 100)
+#define BLOCK_8 Vec3b(243, 178, 122)
+#define BLOCK_4 Vec3b(238, 225, 201)
+#define BLOCK_2 Vec3b(238, 228, 218)
 
 Mat img(SIDE, SIDE, CV_8UC3);
 AI ai;
@@ -39,44 +40,46 @@ void fillSquare(int x, int y, int length, Vec3b color)
     }
 }
 
-Vec3b findColor(int value){
+Vec3b findColor(int value)
+{
     Vec3b color;
-    switch (value){
-        case 2:
-            color = BLOCK_2;
-            break;
-        case 4:
-            color = BLOCK_4;
-            break;
-        case 8:
-            color = BLOCK_8;
-            break;
-        case 16:
-            color = BLOCK_16;
-            break;
-        case 32:
-            color = BLOCK_32;
-            break;
-        case 64:
-            color = BLOCK_64;
-            break;
-        case 128:
-            color = BLOCK_128;
-            break;
-        case 256:
-            color = BLOCK_256;
-            break;
-        case 512:
-            color = BLOCK_512;
-            break;
-        case 1024:
-            color = BLOCK_1024;
-            break;
-        case 2048:
-            color = BLOCK_2048;
-            break;
-        default:
-            color = BACKGROUND;
+    switch (value)
+    {
+    case 2:
+        color = BLOCK_2;
+        break;
+    case 4:
+        color = BLOCK_4;
+        break;
+    case 8:
+        color = BLOCK_8;
+        break;
+    case 16:
+        color = BLOCK_16;
+        break;
+    case 32:
+        color = BLOCK_32;
+        break;
+    case 64:
+        color = BLOCK_64;
+        break;
+    case 128:
+        color = BLOCK_128;
+        break;
+    case 256:
+        color = BLOCK_256;
+        break;
+    case 512:
+        color = BLOCK_512;
+        break;
+    case 1024:
+        color = BLOCK_1024;
+        break;
+    case 2048:
+        color = BLOCK_2048;
+        break;
+    default:
+        color = BACKGROUND;
     }
     return color;
 }
@@ -97,14 +100,23 @@ void render()
                 sprintf(n, "%d", ai.g.grid[i][j]);
 
                 if (ai.g.grid[i][j] != 0)
-                    putText(img, String(n), Point(j * SQUARE_SIZE + (SQUARE_SIZE / 2) - 10 * strlen(n), i * SQUARE_SIZE + (SQUARE_SIZE / 2) + 7), FONT_HERSHEY_TRIPLEX, 1, Scalar(117, 110, 102), 1);
+                    putText(img, String(n), Point(j * SQUARE_SIZE + (SQUARE_SIZE / 2) - 10 * strlen(n), i * SQUARE_SIZE + (SQUARE_SIZE / 2) + 10), FONT_HERSHEY_TRIPLEX, 1, Scalar(117, 110, 102), 1);
                 forDrawing[i][j] = ai.g.grid[i][j];
             }
         }
     }
+
+    // To draw the background of the image
+    // It's unncessary to separate teh background from the image when we can draw it at the end of the render
+    for (int i = 1; i < 4; ++i)
+    {
+        line(img, Point(i * SQUARE_SIZE, 0), Point(i * SQUARE_SIZE, SIDE), CONTAINER, 3);
+        line(img, Point(0, i * SQUARE_SIZE), Point(SIDE, i * SQUARE_SIZE), CONTAINER, 3);
+    }
 }
 
-void init(){
+void init()
+{
     fillSquare(0, 0, SIDE, BACKGROUND);
     render();
 }
@@ -138,15 +150,19 @@ int main(int argc, char **argv)
                 success = ai.g.down();
             else if (keyPress == 'd')
                 success = ai.g.right();
-        }else{
+        }
+        else
+        {
             success = ai.makeMove();
-            if(!success){
+            if (!success)
+            {
                 waitKey(0);
                 break;
             }
         }
 
-        if (success){
+        if (success)
+        {
             ai.g.generateAPlace();
             render();
         }
