@@ -21,9 +21,9 @@ For AI, 2048 AI uses Monte Carlo Tree Search, for more information you can [clic
 
 ## UI
 
-To compile the UI, you can use the following `cmake` configuration:
-
 <img src="https://raw.githubusercontent.com/qyxtim/AI-For-Games/main/2048/assets/21.png" width=50% height=50%>
+
+To compile the UI, you can use the following `cmake` configuration:
 
 ```cmake
 cmake_minimum_required(VERSION 3.7)
