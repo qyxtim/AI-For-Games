@@ -27,14 +27,14 @@ int main(void)
         ai.b.output();
     }
 
-    std::set<GridLocation> intersect = ai.b.intersections();
-    if (intersect.size() != 0)
+    if (ai.b.clickMine())
     {
         printf("\nYou lose!\n");
-        printf("The mine is at coordinate (%d, %d)\n", intersect.begin()->x, intersect.begin()->y);
+        printf("The mine is at coordinate (%d, %d)\n", ai.b.mineLoc.x, ai.b.mineLoc.y);
     }
     else
         printf("\nYou won!\n");
+
     ai.b.finaloutput();
 
     return 0;

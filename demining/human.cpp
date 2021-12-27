@@ -42,14 +42,11 @@ int main(void)
         printf("\n");
     }
 
-    std::set<GridLocation> intersect = b.intersections();
-    if (intersect.size() != 0)
-    {
+    if (b.clickMine)
         printf("You lose!\n");
-        printf("The mine is at coordinate (%d, %d)\n", intersect.begin()->x, intersect.begin()->y);
-    }
     else
         printf("You won!\n");
+
     b.finaloutput();
 
     return 0;

@@ -98,24 +98,17 @@ void Board::click(const GridLocation& location)
     if (taggedLocations.find(location) != taggedLocations.end())
         return;
     // if a mine is clicked, taggedLocations and clickedLocations will both insert this location
-    if (grid[location.x][location.y] == -1)
-        taggedLocations.insert(location);
+    mineLoc = location;
     clickedLocations.insert(location);
 }
 
-std::set<GridLocation> Board::intersections() const
-{
-    for (auto iter = taggedLocations.begin(); iter != taggedLocations.end(); iter++)
-        if (clickedLocations.find(*iter) != clickedLocations.end())
-            return {*iter};
-    return {};
+bool Board::clickMine() const{
+    return mineLoc.x != -1 && mineLoc.y != -1;
 }
 
 bool Board::isEnd() const
 {
-    if (intersections().size() != 0)
-        return true;
-    return int(size * size * factor) + clickedLocations.size() == size * size;
+    return clickMine() || int(size * size * factor) + clickedLocations.size() == size * size;
 }
 
 int Board::getMines(const GridLocation& location) const

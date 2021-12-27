@@ -28,6 +28,10 @@ private:
     const double factor = 0.1;
 
 public:
+    // If it doesn't click mine, the `clickMine` variable should stay at {-1, -1}
+    GridLocation mineLoc = {-1, -1};
+
+public:
     Board(int);
     ~Board();
 
@@ -49,11 +53,10 @@ public:
     // Check whether the game ends
     bool isEnd() const;
 
+    bool clickMine() const;
+
     // Get the number of corresponding location
     int getMines(const GridLocation& location) const;
-
-    // return the intersection of taggedLocation and clickedLocation
-    std::set<GridLocation> intersections() const;
 
     friend class AI;
 };
