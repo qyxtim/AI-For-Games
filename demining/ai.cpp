@@ -8,6 +8,14 @@ AI::AI(int s) : b(s), knownSafetyPlace({}), knowledges({})
             availableActions.insert({i, j});
 }
 
+AI& AI::operator=(const AI & ai){
+    knownSafetyPlace = ai.knownSafetyPlace;
+    knowledges = ai.knowledges;
+    b = ai.b;
+
+    return *this;
+}
+
 void AI::makeRandomMove()
 {
     std::set<GridLocation> relativelySate;

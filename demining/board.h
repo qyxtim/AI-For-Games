@@ -16,6 +16,10 @@ inline bool operator<(const GridLocation &lhs, const GridLocation &rhs)
 
 class Board
 {
+public:
+    // If it doesn't click mine, the `clickMine` variable should stay at {-1, -1}
+    GridLocation mineLoc = {-1, -1};
+
 private:
     // number represents the number of mines near them. -1 means the location is a mine
     int **grid;
@@ -28,12 +32,10 @@ private:
     const double factor = 0.1;
 
 public:
-    // If it doesn't click mine, the `clickMine` variable should stay at {-1, -1}
-    GridLocation mineLoc = {-1, -1};
-
-public:
     Board(int);
     ~Board();
+
+    Board& operator=(const Board &);
 
     // output intermediate state
     void output() const;
@@ -59,4 +61,7 @@ public:
     int getMines(const GridLocation& location) const;
 
     friend class AI;
+    friend void render(int, int, bool);
+    friend void init();
+    friend void onClick(int, int, int, int, void *);
 };

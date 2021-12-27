@@ -54,7 +54,7 @@ void Controller::init()
     for(int i = 0; i < 9; i++){
         for(int j = 0; j < 9; j++){
             if(ai.b.grid[i][j] != 0){
-                char n[2] = {char(ai.b.grid[i][j] + '0')};
+                char n[2] = {char(ai.b.grid[i][j] + '0'), '\0'};
                 putText(img, String(n), Point(i * SQUARE_SIZE + (SQUARE_SIZE / 2) - 7, j * SQUARE_SIZE + (SQUARE_SIZE / 2) + 7), FONT_HERSHEY_COMPLEX, 0.5, Scalar(255, 255, 255));
             }
         }
@@ -78,7 +78,7 @@ void Controller::renderCurrentNumber(){
     {
         // Refill the square of the current number
         fillSquare(SIDE + (OFFSET / 2) - 10, 60, 20, Vec3b(0, 0, 0));
-        char n[2] = {char(curNum + '0')};
+        char n[2] = {char(curNum + '0'), '\0'};
         putText(img, String(n), Point(SIDE + (OFFSET / 2) - 7, 75), FONT_HERSHEY_COMPLEX, 0.5, Scalar(255, 255, 255));
         currentNumberForDrawing = curNum;
     }
@@ -88,7 +88,7 @@ void Controller::render(int x, int y, Vec3b color)
 {
     // Refill the square of the grid
     fillSquare(x * SQUARE_SIZE + 5, y * SQUARE_SIZE + 5, SQUARE_SIZE - 10, color);
-    char n[2] = {char(ai.b.grid[x][y] + '0')};
+    char n[2] = {char(ai.b.grid[x][y] + '0'), '\0'};
     putText(img, String(n), Point(x * SQUARE_SIZE + (SQUARE_SIZE / 2) - 7, y * SQUARE_SIZE + (SQUARE_SIZE / 2) + 7), FONT_HERSHEY_COMPLEX, 0.5, Scalar(255, 255, 255));
 }
 

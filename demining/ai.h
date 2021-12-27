@@ -19,9 +19,24 @@ inline bool operator<(const Knowledge &lhs, const Knowledge &rhs)
 class AI
 {
 public:
-    AI(int);
     Board b;
 
+private:
+    // Store the availableActions
+    std::set<GridLocation> availableActions;
+
+    // Store known Safety Place
+    std::set<GridLocation> knownSafetyPlace;
+
+    // Store known Dangerous Place
+    std::set<GridLocation> dangerousPlace;
+
+    // Store Knowledge abou the board
+    std::set<Knowledge> knowledges;
+
+public:
+    AI(int);
+    AI& operator=(const AI &);
     // Ask AI to take a move
     void move();
 
@@ -37,17 +52,4 @@ private:
 
     // Check if small-sized set is a subset of large-sized set
     bool isSubset(const Knowledge &a, const Knowledge &b) const;
-
-private:
-    // Store the availableActions
-    std::set<GridLocation> availableActions;
-
-    // Store known Safety Place
-    std::set<GridLocation> knownSafetyPlace;
-
-    // Store known Dangerous Place
-    std::set<GridLocation> dangerousPlace;
-
-    // Store Knowledge abou the board
-    std::set<Knowledge> knowledges;
 };

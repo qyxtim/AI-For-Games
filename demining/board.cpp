@@ -42,6 +42,22 @@ Board::Board(int s) : size(s), taggedLocations({}), clickedLocations({})
     }
 }
 
+Board& Board::operator=(const Board & b){
+    size = b.size;
+    taggedLocations = b.taggedLocations;
+    clickedLocations = b.clickedLocations;
+
+    grid = new int *[size];
+    for (int i = 0; i < size; i++)
+    {
+        grid[i] = new int[size];
+        for (int j = 0; j < size; j++)
+            grid[i][j] = b.grid[i][j];
+    }
+
+    return *this;
+}
+
 Board::~Board()
 {
     for (int i = 0; i < size; i++)
@@ -98,7 +114,8 @@ void Board::click(const GridLocation& location)
     if (taggedLocations.find(location) != taggedLocations.end())
         return;
     // if a mine is clicked, taggedLocations and clickedLocations will both insert this location
-    mineLoc = location;
+    if(grid[location.x][location.y] == -1)
+        mineLoc = location;
     clickedLocations.insert(location);
 }
 
