@@ -56,7 +56,7 @@ The UI will be created for all games in the repository. These UI will be created
 - [x] Tic-Tac-Toe
 - [x] 2048
 - [x] Sudoku
-- [ ] Demining
+- [x] Demining
 - [ ] Flappy Bird
 - [ ] Tetris
 

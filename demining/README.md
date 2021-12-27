@@ -33,6 +33,9 @@ The idea is that if there are two pieces of knowledge $k_1$ and $k_2$ such that 
 Since it is based on knowledge, the AI sometimes can only take random move because it may not have enough knowledge about the game, which means the AI will probabily lose the game.
 
 ## UI
+
+<img src="https://raw.githubusercontent.com/qyxtim/AI-For-Games/main/demining/assets/d1.png" width=50% height=50%>
+
 To compile the UI, you can use the following `cmake` configuration:
 
 ```cmake
